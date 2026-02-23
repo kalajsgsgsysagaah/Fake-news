@@ -8,17 +8,18 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Copy requirements first (better caching)
+# Copy requirements first
 COPY Requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r Requirements.txt
 
-# Copy project files
+# Copy all files
 COPY . .
 
-# Expose port (Railway uses dynamic PORT)
+# Railway dynamic port
+ENV PORT=7860
 EXPOSE 7860
 
 # Start app
-CMD ["python", "app.py"]
+CMD ["python", "fake.py"]
