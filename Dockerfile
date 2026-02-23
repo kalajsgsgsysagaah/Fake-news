@@ -18,8 +18,8 @@ RUN pip install --no-cache-dir -r Requirements.txt
 COPY . .
 
 # Railway dynamic port
-ENV PORT=7860
-EXPOSE 7860
+ENV PORT=8080
+EXPOSE 8080
 
 # Start app
 CMD ["python", "fake.py"]
