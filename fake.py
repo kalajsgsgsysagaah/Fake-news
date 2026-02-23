@@ -62,7 +62,7 @@ with gr.Blocks(title="Fake News Detection") as demo:
     button.click(check_news, inputs=text_input, outputs=output)
 
 
-port = int(os.environ.get("PORT", 7860))
+port = int(os.environ.get("PORT", 8080))
 
 demo.launch(
     server_name="0.0.0.0",
