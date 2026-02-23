@@ -9,7 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Copy requirements first (better caching)
-COPY requirements.txt .
+COPY Requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r Requirements.txt
