@@ -24,4 +24,4 @@ ENV GRADIO_SERVER_NAME=0.0.0.0
 ENV GRADIO_SERVER_PORT=7860
 
 # Run the app
-CMD ["python", "app.py"]
+CMD ["python", "fake.py"]
