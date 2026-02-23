@@ -1,27 +1,29 @@
-# Use official Python image
+# Use official lightweight Python image
 FROM python:3.11-slim
+
+# Prevent Python from writing .pyc files
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Prevent Python from buffering stdout/stderr
+ENV PYTHONUNBUFFERED=1
 
 # Set working directory
 WORKDIR /app
 
-# Copy all files to container
-COPY . /app
-
-# Install system dependencies (if needed)
+# Install system dependencies (minimal)
 RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements first (better caching)
+COPY requirements.txt .
+
 # Install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir gradio requests
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose Gradio port
-EXPOSE 7860
+# Copy project files
+COPY . .
 
-# Environment variables
-ENV GRADIO_SERVER_NAME=0.0.0.0
-ENV GRADIO_SERVER_PORT=7860
-
-# Run the app
+# Railway automatically provides PORT
 CMD ["python", "fake.py"]
